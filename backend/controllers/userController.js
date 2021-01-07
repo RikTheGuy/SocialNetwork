@@ -8,7 +8,7 @@ const login = asyncHandler(async (req, res) => {
     const { email, password } = req.body
 
     if (!(email && password)) {
-        res.status(403).json('Unauthorized')
+        res.status(403).json('Forbidden')
         return
     }
 
@@ -23,7 +23,7 @@ const login = asyncHandler(async (req, res) => {
             refreshToken: await generateRefreshToken(user._id)
         })
     } else {
-        res.status(403).json('Unauthorized')
+        res.status(401).json('Unauthorized')
     }
 })
 
@@ -31,14 +31,13 @@ const register = asyncHandler(async (req, res) => {
     const { firstName, lastName, email, password } = req.body
 
     if (!(firstName && lastName && email && password)) {
-        res.status(400).json('Bad Request')
-        return
+        res.status(403).json('Forbidden')
     }
 
     const existUser = await UserModel.findOne({ email })
 
     if (existUser) {
-        res.status(304).json('User Exists')
+        res.status(403).json('User Exists')
     } else {
         const user = await UserModel.create({
             firstName: firstName,
@@ -63,7 +62,7 @@ const profile = asyncHandler(async (req, res) => {
     const user = await UserModel.findById(req.userID)
 
     if (!user) {
-        res.status(503).send('Internal Error')
+        res.status(500).send('Internal Error')
     }
 
     res.json({
@@ -85,7 +84,7 @@ const edit = asyncHandler(async (req, res) => {
     const user = await UserModel.findById(id)
 
     if (!user) {
-        res.status(503).send('Internal Error')
+        res.status(500).send('Internal Error')
     }
 
     try {
@@ -97,7 +96,7 @@ const edit = asyncHandler(async (req, res) => {
         res.send('User Updated')
     } catch (error) {
         const message = error.message ? error.message : error
-        res.send(message)
+        res.status(500).send(message)
     }
 })
 
@@ -114,7 +113,7 @@ const logout = asyncHandler(async (req, res) => {
         res.send('Successfully Logged Out')
     } catch (error) {
         const message = error.message ? error.message : error
-        res.send(message)
+        res.status(500).send(message)
     }
 })
 

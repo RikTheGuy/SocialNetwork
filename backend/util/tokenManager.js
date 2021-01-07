@@ -10,7 +10,7 @@ const generateRefreshToken = async (payload) => {
     const existTokens = await TokenModel.find({ userID: payload }, { expiresIn: '10d' })
 
     if (existTokens.length > 5) {
-        //revoke them
+        await TokenModel.deleteMany({ userID: payload })
     }
     const token = jwt.sign({ _id: payload }, process.env.JWT_SECRET)
 

@@ -18,7 +18,7 @@ server.use('/api/users', userRoutes)
 server.use('/api', miscRoutes)
 
 server.get('/', (req, res) => {
-    res.status(404).json('File Not Found')
+    res.status(404).json('Path Not Found')
 })
 
 server.listen(process.env.PORT || 80)
