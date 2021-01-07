@@ -32,6 +32,7 @@ const register = asyncHandler(async (req, res) => {
 
     if (!(firstName && lastName && email && password)) {
         res.status(403).json('Forbidden')
+        return
     }
 
     const existUser = await UserModel.findOne({ email })
@@ -63,6 +64,7 @@ const profile = asyncHandler(async (req, res) => {
 
     if (!user) {
         res.status(500).send('Internal Error')
+        return
     }
 
     res.json({
@@ -78,6 +80,7 @@ const edit = asyncHandler(async (req, res) => {
 
     if (!(email && password && firstName && lastName)) {
         res.status(400).send('Bad Request')
+        return
     }
 
     const id = req.userID
@@ -85,6 +88,7 @@ const edit = asyncHandler(async (req, res) => {
 
     if (!user) {
         res.status(500).send('Internal Error')
+        return
     }
 
     try {
@@ -105,11 +109,11 @@ const logout = asyncHandler(async (req, res) => {
 
     if (!token) {
         res.status(400).send('Bad Request')
+        return
     }
 
     try {
         await revokeToken(token)
-
         res.send('Successfully Logged Out')
     } catch (error) {
         const message = error.message ? error.message : error
