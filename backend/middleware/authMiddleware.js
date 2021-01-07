@@ -14,7 +14,7 @@ const authorize = asyncHandler(async (req, res, next) => {
             res.status(401).send('Unauthorized, Bad Token')
         }
     } else {
-        res.status(401).send("Unauthorized, no token")
+        res.status(403).send("Unauthorized, no token")
     }
 })
 
