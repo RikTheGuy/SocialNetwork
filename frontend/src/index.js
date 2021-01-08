@@ -5,10 +5,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+
+import QuestionsReducer from './store/reducers/QuestionsReducer'
+
+const reducer = combineReducers({ questions: QuestionsReducer })
+
+const initialState = {}
+
+const store = createStore(reducer, initialState, applyMiddleware(thunk))
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
