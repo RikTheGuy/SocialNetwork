@@ -1,5 +1,5 @@
 import React from 'react'
-import {Navbar, Nav, Container, Button, Dropdown} from 'react-bootstrap'
+import {Navbar, Nav, Container, Button, Dropdown, Form, FormControl} from 'react-bootstrap'
 
 
 const Header = () => {
@@ -17,10 +17,10 @@ const Header = () => {
 
 
     </Nav>
-    {/* <Form inline>
+     <Form inline>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
       
-    </Form> */}
+    </Form> 
     
     <Dropdown  >
   <Dropdown.Toggle  id="dropdown-basic" toggle-class="rounded-circle px-2" variant="light">
@@ -28,9 +28,23 @@ const Header = () => {
   </Dropdown.Toggle>
 
   <Dropdown.Menu>
-    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+    <Dropdown.Item href="#/action-1"><i class="fas fa-user-circle fa-2x"></i> </Dropdown.Item>
+    <Dropdown.Item href="#/action-2">USER NAME <i class="fas fa-angle-right" ></i></Dropdown.Item>
+    <Dropdown.Divider />
+    <Dropdown.Item href="#/action-3">Message</Dropdown.Item>
+    <Dropdown.Item href="#/action-4">Create Ad</Dropdown.Item>
+    <Dropdown.Item href="#/action-5">Stats</Dropdown.Item>
+    <Dropdown.Item href="#/action-6">Your Content</Dropdown.Item>
+    <Dropdown.Item href="#/action-7">Bookmarks</Dropdown.Item>
+    <Dropdown.Item href="#/action-8">Drafts</Dropdown.Item>
+    <Dropdown.Divider />
+    <Dropdown.Item href="#/action-9">Settings</Dropdown.Item>
+    <Dropdown.Item href="#/action-10">Languages</Dropdown.Item>
+    <Dropdown.Item href="#/action-11">Help</Dropdown.Item>
+    <Dropdown.Item href="#/action-12">Logout</Dropdown.Item>
+
+
+
   </Dropdown.Menu>
 </Dropdown>
 <Nav.Link href="languages" title="Languages" className="Icon_Hover" ><i class="fas fa-globe fa-2x"></i></Nav.Link>
